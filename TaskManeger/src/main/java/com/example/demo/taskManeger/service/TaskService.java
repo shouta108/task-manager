@@ -1,6 +1,6 @@
 package com.example.demo.taskManeger.service;
 
-import com.example.demo.taskManeger.entity.Task;
+import org.springframework.scheduling.config.Task;
 
 public interface TaskService {
 	//タスクを登録
