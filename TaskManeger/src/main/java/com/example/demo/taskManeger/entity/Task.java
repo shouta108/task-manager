@@ -21,8 +21,8 @@ public class Task {
 	private String task;
 	//期日
 	private Date date;
-//	//分類
-//	private String sort;
+	//分類
+	private String sort;
 	//完了
 	private boolean completion;
 }
