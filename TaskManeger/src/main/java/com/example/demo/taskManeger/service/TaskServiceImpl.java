@@ -1,10 +1,13 @@
 package com.example.demo.taskManeger.service;
 
+import java.util.Optional;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.scheduling.config.Task;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import com.example.demo.taskManeger.entity.TaskManeger;
 import com.example.demo.taskManeger.repository.TaskRepository;
 
 @Service
@@ -13,15 +16,14 @@ public class TaskServiceImpl implements TaskService {
 	@Autowired
 	TaskRepository repository;
 	
-	
 	@Override
-	public void inertTask(Task task) {
+	public void inertTask(TaskManeger task) {
 		// TODO 自動生成されたメソッド・スタブ
 		repository.save(task);
 	}
 
 	@Override
-	public void updateTask(Task task) {
+	public void updateTask(TaskManeger task) {
 		// TODO 自動生成されたメソッド・スタブ
 		repository.save(task);
 	}
@@ -33,9 +35,21 @@ public class TaskServiceImpl implements TaskService {
 	}
 
 	@Override
-	public void completeTask(Task task) {
+	public void completeTask(TaskManeger task) {
 		// TODO 自動生成されたメソッド・スタブ
 		repository.save(task);
+	}
+
+	@Override
+	public Iterable<TaskManeger> selectAll() {
+		// TODO 自動生成されたメソッド・スタブ
+		return repository.findAll();
+	}
+
+	@Override
+	public Optional<TaskManeger> selectOneById(Integer id) {
+		// TODO 自動生成されたメソッド・スタブ
+		return repository.findById(id);
 	}
 
 }
