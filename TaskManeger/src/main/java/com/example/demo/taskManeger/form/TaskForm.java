@@ -17,5 +17,5 @@ public class TaskForm {
 	//分類
 	private String sort;
 	//完了
-	private boolean completion;
+	private Boolean completion;
 }
