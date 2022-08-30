@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+
+
+<title>TODOリスト</title>
+
+<style>
+    th {
+width: 200px;
+}
+    :root { font-size: 16px; }
+main {
+width: 480px;
+margin: 0 auto;
+padding: 30px 30px 50px;
+box-shadow: 0 0 10px 0 lightgray;
+}
+input, select { margin: 0.5rem 1rem 0.5rem 0; }
+input[type='number'] { width: 30px; }
+button#submit, button#priority, button#remove {
+padding: 5px 10px;
+margin-top: 1rem;
+background-color: royalblue;
+color: white;
+border-style: none;
+}
+button#priority { background-color: olivedrab; }
+button#remove { background-color: firebrick; }
+table {
+margin-top: 2rem;
+border: solid 2px lightgray;
+border-collapse: collapse;
+}
+th, td {
+border: solid 1px lightgray;
+border-collapse: collapse;
+}
+th {
+background-color: beige;
+padding: 0 0.5rem 0;
+}
+th#todoLabel { width: 200px; }
+th#dateLabel { width: 100px; }
+td { text-align: center; }
+td input[type='checkbox'] { margin: 0; }
+</style>
+
+</head>
+<body>
+
+<main>
+
+<div id="input">
+<label>追加するタスク: <input id="todo"></label><br>
+<label>期日: <input type="date"></label>  <button id="submit">登録</button>
+</div>
+
+<table>
+<tr>
+    <th id="todoLabel">タスク</th>
+    <th id="dateLabel">期日</th>
+    <th>完了</th>
+</tr>
+</table>
+
+</main>
+
+<script src="script.js">
+'use strict';
+
+const storage = localStorage;
+
+const table = document.querySelector('table');
+const todo = document.getElementById('todo');
+const priority = document.querySelector('select');
+const deadline = document.querySelector('input[type="date"]');
+const submit = document.getElementById('submit');
+
+let list = [];
+
+document.addEventListener('DOMContentLoaded', () => {
+  const json = storage.todoList;
+  if (json == undefined) {
+    return;
+  }
+  list = JSON.parse(json);
+  for (const item of list) {
+    addItem(item);
+  }
+});
+
+const addItem = (item) => {
+  const tr = document.createElement('tr');
+
+  for (const prop in item) {
+    const td = document.createElement('td');
+    if (prop == 'done') {
+      const checkbox = document.createElement('input');
+      checkbox.type = 'checkbox';
+      checkbox.checked = item[prop];
+      td.appendChild(checkbox);
+    } else {
+      td.textContent = item[prop];
+    }
+    tr.appendChild(td);
+  }
+
+  table.append(tr);
+};
+
+submit.addEventListener('click', () => {
+  const item = {};
+
+  if (todo.value != '') {
+    item.todo = todo.value;
+  } else {
+    item.todo = 'ダミーTODO';
+  }
+  item.priority = priority.value;
+  if (deadline.value != '') {
+    item.deadline = deadline.value;
+  } else {
+    const date = new Date();
+    item.deadline = date.toLocaleDateString().replace(/\//g, '-');
+  }
+  item.done = false;
+
+  todo.value = '';
+  priority.value = '普';
+  deadline.value = '';
+
+  addItem(item);
+
+  list.push(item);
+  storage.todoList = JSON.stringify(list);
+});
+
+</script>
+</body>
+</html>
