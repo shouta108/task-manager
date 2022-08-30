@@ -1,5 +1,7 @@
 package com.example.demo.taskManeger.entity;
 
+import java.sql.Date;
+
 import org.springframework.data.annotation.Id;
 import org.springframework.data.relational.core.mapping.Column;
 import org.springframework.data.relational.core.mapping.Table;
@@ -22,7 +24,7 @@ public class TaskManeger {
 	private String task;
 	//期日
 	@Column(value ="date")
-	private String date;
+	private Date date;
 	//分類
 	@Column(value ="sort")
 	private String sort;
