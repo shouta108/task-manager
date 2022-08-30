@@ -2,13 +2,28 @@
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
 <meta charset="UTF-8">
-<title>タスク管理</title>
+<title>TODOリスト</title>
+<link th:href="@{/css/style.css}" rel="styleSheet">
+
 </head>
 <body>
-	<div id="input">
-    <label>TODO: <input id="todo"></label><br>
-    <label>期日: <input type="date"></label><br>
-    <button id="submit">登録</button>
-</div> 
+
+<main>
+
+<div id="input">
+<label>追加するタスク: <input id="todo"></label><br>
+<label>期日: <input type="date"></label>  <button id="submit">登録</button>
+</div>
+
+<table>
+<tr>
+    <th id="todoLabel">タスク</th>
+    <th id="dateLabel">期日</th>
+    <th>完了</th>
+</tr>
+</table>
+
+</main>
+
 </body>
 </html>
