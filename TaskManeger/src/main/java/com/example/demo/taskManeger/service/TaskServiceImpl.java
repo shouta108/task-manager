@@ -1,7 +1,6 @@
 package com.example.demo.taskManeger.service;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.scheduling.config.Task;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -38,4 +37,18 @@ public class TaskServiceImpl implements TaskService {
 		repository.save(task);
 	}
 
+<<<<<<< Updated upstream
+=======
+	@Override
+	public Iterable<TaskManeger> selectAll() {
+		// TODO 自動生成されたメソッド・スタブ
+		return repository.findAll();
+	}
+
+	@Override
+	public Optional<TaskManeger> selectOneById(Integer id) {
+		// TODO 自動生成されたメソッド・スタブ
+		return repository.findById(id);
+	}
+>>>>>>> Stashed changes
 }
