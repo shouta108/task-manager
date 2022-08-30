@@ -18,9 +18,5 @@ public class TaskManegerApplication {
 	
 	private void execute() {
 		
-<<<<<<< Updated upstream
-	}	
-=======
 	}
->>>>>>> Stashed changes
 }
