@@ -2,31 +2,51 @@ package com.example.demo.taskManeger.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
+import com.example.demo.taskManeger.entity.TaskManeger;
 import com.example.demo.taskManeger.form.TaskForm;
 import com.example.demo.taskManeger.repository.TaskRepository;
+import com.example.demo.taskManeger.service.TaskServiceImpl;
 
 @Controller
 public class TaskController {
 	
 	@Autowired
 	TaskRepository repository;
+	@Autowired
+	TaskServiceImpl service;
 	
 	@GetMapping("show")
-	public String showview(TaskForm f) {
-		//データベースからデータを取得する
+	public String showview(@ModelAttribute TaskManeger task, Model model) {
+		model.addAttribute("taskList", service.selectAll());
 		return "view";
 	}
 	
 	@PostMapping("register")
-	public String register(TaskForm f) {
-		System.out.println(f.getTask());
-		System.out.println(f.getSort());
-		System.out.println(f.getDate());
-//		TaskManeger task = new TaskManeger(null, f.getTask(), f.getDate(), f.getSort(), false);
-//		task = repository.save(task);
+	public String register(TaskForm f,@ModelAttribute TaskManeger taskEntity, Model model) {
+		TaskManeger task = new TaskManeger(null, f.getTask(), f.getDate(), f.getSort(), false);
+		task = repository.save(task);
+		model.addAttribute("taskList", service.selectAll());
 		return "view";
 	}
+	
+	@PostMapping("delete")
+	public String deleteTask(@RequestParam("id") String id, Model model) {
+		repository.deleteById(Integer.parseInt(id));
+		model.addAttribute("taskList", service.selectAll());
+		return "view";
+	}
+	
+	@PostMapping("completion")
+	public String completion(TaskForm f, @RequestParam("id") String id, Model model) {
+		// 完了したときの処理を書く
+		return "view";
+		
+	}
+	
 }

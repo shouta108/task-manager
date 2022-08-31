@@ -17,7 +17,9 @@ public class TaskManegerApplication {
 	TaskRepository repository;
 	
 	private void execute() {
-		
-	}	
-	
+//		Iterable<TaskManeger> tasks = repository.findAll();
+//		for (TaskManeger task: tasks) {
+//			System.out.println(task);
+//		}
+	}
 }
