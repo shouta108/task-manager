@@ -56,7 +56,7 @@ public class TaskServiceImpl implements TaskService {
 	}
 
 	@Override
-	public Iterable<TaskManeger> sort() {
+	public Iterable<TaskManeger> sortDate() {
 		// TODO 自動生成されたメソッド・スタブ
 		Iterable<TaskManeger> tasks = selectAll();
 		List<TaskManeger> sortTasks = new ArrayList<TaskManeger>();
@@ -67,6 +67,4 @@ public class TaskServiceImpl implements TaskService {
 		tasks = sortTasks;
 		return tasks;
 	}
-
-	
 }

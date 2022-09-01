@@ -34,7 +34,7 @@
 	            	</th:block>
 	            </th:block>
 	            <td><form th:action="@{delete}" method="post"><button th:value="*{id}" name="id">削除</button></form></td>
-	            <td><button th:action="@{revise}" th:value="*{id}">編集</button></td>
+	            <td><form  th:action="@{revise}" method="post"><button th:value="*{id}" name="id">編集</button></form></td>
 	        </tr>
         </table>
 </main>

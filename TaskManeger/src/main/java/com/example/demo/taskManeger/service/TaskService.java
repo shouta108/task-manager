@@ -18,5 +18,5 @@ public interface TaskService {
 	//タスクの完了
 	void completeTask(TaskManeger task);
 	//タスクのソート
-	Iterable<TaskManeger> sort();
+	Iterable<TaskManeger> sortDate();
 }

@@ -23,7 +23,21 @@ public class TaskController {
 	
 	@GetMapping("show")
 	public String showview(@ModelAttribute TaskManeger task, Model model) {
-		model.addAttribute("taskList", service.sort());
+		model.addAttribute("taskList", service.sortDate());
+		return "view";
+	}
+	
+	@PostMapping("revise")
+	public String showrevice(@ModelAttribute TaskManeger task, Model model, @RequestParam("id") String id) {
+		model.addAttribute("reviseTask", service.selectOneById(Integer.parseInt(id)));
+		return "revise";
+	}
+	
+	@PostMapping("confirm")
+	public String confirm(TaskForm f ,@ModelAttribute TaskManeger task, Model model) {
+		TaskManeger revisedTask = new TaskManeger(f.getId(), f.getTask(), f.getDate(), f.getSort(), f.getCompletion());
+		task = repository.save(revisedTask);
+		model.addAttribute("taskList", service.sortDate());
 		return "view";
 	}
 	
@@ -31,20 +45,20 @@ public class TaskController {
 	public String register(TaskForm f,@ModelAttribute TaskManeger taskEntity, Model model) {
 		TaskManeger task = new TaskManeger(null, f.getTask(), f.getDate(), f.getSort(), false);
 		task = repository.save(task);
-		model.addAttribute("taskList", service.sort());
+		model.addAttribute("taskList", service.sortDate());
 		return "view";
 	}
 	
 	@PostMapping("delete")
 	public String deleteTask(@RequestParam("id") String id, Model model) {
 		repository.deleteById(Integer.parseInt(id));
-		model.addAttribute("taskList", service.sort());
+		model.addAttribute("taskList", service.sortDate());
 		return "view";
 	}
 	
 	@PostMapping("completion")
 	public String completion(TaskForm f, @RequestParam("id") String id, Model model) {
-		Iterable<TaskManeger> tasks = service.sort();
+		Iterable<TaskManeger> tasks = service.sortDate();
 		for (TaskManeger task : tasks) {
 			int taskId = task.getId();
 			if (taskId == Integer.parseInt(id) && task.getCompletion() == false) {
