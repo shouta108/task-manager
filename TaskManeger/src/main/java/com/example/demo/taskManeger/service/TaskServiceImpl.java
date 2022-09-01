@@ -1,11 +1,15 @@
 package com.example.demo.taskManeger.service;
 
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import com.example.demo.taskManeger.comparator.TaskComparator;
 import com.example.demo.taskManeger.entity.TaskManeger;
 import com.example.demo.taskManeger.repository.TaskRepository;
 
@@ -51,4 +55,18 @@ public class TaskServiceImpl implements TaskService {
 		return repository.findById(id);
 	}
 
+	@Override
+	public Iterable<TaskManeger> sort() {
+		// TODO 自動生成されたメソッド・スタブ
+		Iterable<TaskManeger> tasks = selectAll();
+		List<TaskManeger> sortTasks = new ArrayList<TaskManeger>();
+		for (TaskManeger task : tasks) {
+			sortTasks.add(task);
+		}
+		Collections.sort(sortTasks, new TaskComparator());
+		tasks = sortTasks;
+		return tasks;
+	}
+
+	
 }
