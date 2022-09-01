@@ -58,7 +58,13 @@ public class TaskController {
 			}
 		}
 		return "view";
-		
 	}
 	
+//	public void sort() {
+//		Iterable<TaskManeger> tasks = service.selectAll();
+//		List<TaskManeger> sortTasks;
+//		for (TaskManeger task : tasks) {
+//			sortTasks 
+//		}
+//	}
 }

@@ -1,15 +1,12 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
-<meta charset="UTF-8">
-<title>TODOリスト</title>
-<link  th:href="@{/css/style.css}" rel="styleSheet">
-
+	<meta charset="UTF-8">
+	<title>TODOリスト</title>
+	<link  th:href="@{/css/style.css}" rel="styleSheet">
 </head>
 <body>
-
 <main>
-
     <form th:action="@{register}" method="post">
         <div id="input">
         <label>追加するタスク: <input id="todo" name="task"></label><br>
@@ -18,32 +15,28 @@
         </div>
 	</form>
         <table>
-        <tr>
-        	<th id="sortLabel">ソート</th>
-            <th id="todoLabel">タスク</th>
-            <th id="dateLabel">期日</th>
-            <th>完了</th>
-        </tr>
-        <tr th:each="taskManeger : ${taskList}" th:object="${taskManeger}">
-        	<td th:text="*{sort}"></td>
-            <td th:text="*{task}"></td>
-            <td th:text="*{date}"></td>
-            <th:block th:with="comp=*{completion}">
-            	<th:block th:if="${comp == true}">
-            		<td><form th:action="@{completion}" method="post"><button th:value="*{id}" name="id">完了!</button></form></td>
-            	</th:block>
-            	<th:block th:if="${comp == false}">
-            		<td><form th:action="@{completion}" method="post"><button th:value="*{id}" name="id">未完了</button></form></td>
-            	</th:block>
-            </th:block>
-            <td><form th:action="@{delete}" method="post"><button th:value="*{id}" name="id">削除</button></form></td>
-            <td><button th:action="@{revise}" th:value="*{id}">編集</button></td>
-        </tr>
+	        <tr>
+	        	<th id="sortLabel">ソート</th>
+	            <th id="todoLabel">タスク</th>
+	            <th id="dateLabel">期日</th>
+	            <th>完了</th>
+	        </tr>
+	        <tr th:each="taskManeger : ${taskList}" th:object="${taskManeger}">
+	        	<td th:text="*{sort}"></td>
+	            <td th:text="*{task}"></td>
+	            <td th:text="*{date}"></td>
+	            <th:block th:with="comp=*{completion}">
+	            	<th:block th:if="${comp == true}">
+	            		<td><form th:action="@{completion}" method="post"><button th:value="*{id}" name="id">完了!</button></form></td>
+	            	</th:block>
+	            	<th:block th:if="${comp == false}">
+	            		<td><form th:action="@{completion}" method="post"><button th:value="*{id}" name="id">未完了</button></form></td>
+	            	</th:block>
+	            </th:block>
+	            <td><form th:action="@{delete}" method="post"><button th:value="*{id}" name="id">削除</button></form></td>
+	            <td><button th:action="@{revise}" th:value="*{id}">編集</button></td>
+	        </tr>
         </table>
-        
-    
-
 </main>
-
 </body>
 </html>
