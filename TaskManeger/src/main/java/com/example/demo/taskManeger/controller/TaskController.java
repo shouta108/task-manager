@@ -44,7 +44,19 @@ public class TaskController {
 	
 	@PostMapping("completion")
 	public String completion(TaskForm f, @RequestParam("id") String id, Model model) {
-		// 完了したときの処理を書く
+		Iterable<TaskManeger> tasks = service.selectAll();
+		for (TaskManeger task : tasks) {
+			int taskId = task.getId();
+			if (taskId == Integer.parseInt(id) && task.getCompletion() == false) {
+				task.setCompletion(true);
+				repository.save(task);
+				model.addAttribute("taskList", service.selectAll());
+			} else if (taskId == Integer.parseInt(id) && task.getCompletion() == true) {
+				task.setCompletion(false);
+				repository.save(task);
+				model.addAttribute("taskList", service.selectAll());
+			}
+		}
 		return "view";
 		
 	}

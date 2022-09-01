@@ -28,7 +28,14 @@
         	<td th:text="*{sort}"></td>
             <td th:text="*{task}"></td>
             <td th:text="*{date}"></td>
-            <td th:text="*{completion}"></td>
+            <th:block th:with="comp=*{completion}">
+            	<th:block th:if="${comp == true}">
+            		<td><form th:action="@{completion}" method="post"><button th:value="*{id}" name="id">完了!</button></form></td>
+            	</th:block>
+            	<th:block th:if="${comp == false}">
+            		<td><form th:action="@{completion}" method="post"><button th:value="*{id}" name="id">未完了</button></form></td>
+            	</th:block>
+            </th:block>
             <td><form th:action="@{delete}" method="post"><button th:value="*{id}" name="id">削除</button></form></td>
             <td><button th:action="@{revise}" th:value="*{id}">編集</button></td>
         </tr>
