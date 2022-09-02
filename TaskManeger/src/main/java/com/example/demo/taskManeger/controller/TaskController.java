@@ -74,4 +74,8 @@ public class TaskController {
 		return "view";
 	}
 	
+	@PostMapping("config")
+	public String config() {
+		return "config";
+	}
 }

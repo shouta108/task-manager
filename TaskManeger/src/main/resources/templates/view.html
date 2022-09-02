@@ -14,6 +14,9 @@
         <label>期日: <input type="date" name="date"></label>  <button id="submit">登録</button> 
         </div>
 	</form>
+	<form th:action="@{config}" method="post">
+		<button id="config">config</button>
+	</form>
         <table>
 	        <tr>
 	        	<th id="sortLabel">ソート</th>
