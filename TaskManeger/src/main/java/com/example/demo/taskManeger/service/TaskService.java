@@ -17,4 +17,6 @@ public interface TaskService {
 	void deleteTask(Integer id);
 	//タスクの完了
 	void completeTask(TaskManeger task);
+	//タスクのソート
+	Iterable<TaskManeger> sortDate();
 }

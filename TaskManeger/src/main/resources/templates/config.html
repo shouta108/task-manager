@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>TODOリスト</title>
+<link th:href="@{/css/style.css}" rel="styleSheet">
+<link th:href="@{/css/slidebar.css}" rel="styleSheet">
+<script type="text/javascript" th:src="@{/js/jquery-3.6.0.min.js}"></script>
+<script type="text/javascript" th:src="@{/js/slidebar.js}"></script>
+</head>
+<body>
+	<div class="slidebar-multithumb">
+  <label for="range-label">slidebar</label>
+  <input class="thumb-1" type="range" name="range-1" id="range-1" value="50" min="0" max="100" step="1">
+  <input class="thumb-2" type="range" name="range-2" id="range-2" value="90" min="0" max="100" step="1">
+  <div>
+    <div>開始:<span id="start-value"></span></div> 
+    <div>終了:<span id="end-value"></span></div>
+    <div>差分:<span id="difference"></span></div>
+  </div>
+</div>
+</body>
+</html>

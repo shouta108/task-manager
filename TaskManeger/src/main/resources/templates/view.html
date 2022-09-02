@@ -1,31 +1,51 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
+
 <meta charset="UTF-8">
 <title>TODOリスト</title>
 <link  th:href="@{/css/style.css}" rel="styleSheet">
 
+	<meta charset="UTF-8">
+	<title>TODOリスト</title>
+	<link  th:href="@{/css/style.css}" rel="styleSheet">
+
 </head>
 <body>
-
 <main>
-
     <form th:action="@{register}" method="post">
         <div id="input">
-        <label>追加するタスク: <input id="todo" name="task"></label><label>ソート:<input id="sort" name="sort"></label><br>
+        <label>追加するタスク: <input id="todo" name="task"></label><br>
+        <label>ソート:<input id="sort" name="sort"></label><br>
         <label>期日: <input type="date" name="date"></label>  <button id="submit">登録</button> 
         </div>
-
+	</form>
+	<form th:action="@{config}" method="post">
+		<button id="config">config</button>
+	</form>
         <table>
-        <tr>
-            <th id="todoLabel">タスク</th>
-            <th id="dateLabel">期日</th>
-            <th>完了</th>
-        </tr>
+	        <tr>
+	        	<th id="sortLabel">ソート</th>
+	            <th id="todoLabel">タスク</th>
+	            <th id="dateLabel">期日</th>
+	            <th>完了</th>
+	        </tr>
+	        <tr th:each="taskManeger : ${taskList}" th:object="${taskManeger}">
+	        	<td th:text="*{sort}"></td>
+	            <td th:text="*{task}"></td>
+	            <td th:text="*{date}"></td>
+	            <th:block th:with="comp=*{completion}">
+	            	<th:block th:if="${comp == true}">
+	            		<td><form th:action="@{completion}" method="post"><button th:value="*{id}" name="id">完了!</button></form></td>
+	            	</th:block>
+	            	<th:block th:if="${comp == false}">
+	            		<td><form th:action="@{completion}" method="post"><button th:value="*{id}" name="id">未完了</button></form></td>
+	            	</th:block>
+	            </th:block>
+	            <td><form th:action="@{delete}" method="post"><button th:value="*{id}" name="id">削除</button></form></td>
+	            <td><form  th:action="@{revise}" method="post"><button th:value="*{id}" name="id">編集</button></form></td>
+	        </tr>
         </table>
-    </form>
-
 </main>
-
 </body>
 </html>

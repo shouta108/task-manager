@@ -1,0 +1,60 @@
+@charset "UTF-8";
+/* 色設定 */
+:root {
+  --bar1: rgb(0, 255, 0);
+  --bar2: rgb(255, 255, 0);
+}
+
+/* グリッド */
+.slidebar-multithumb {
+  display: grid;
+  padding: 1rem;
+}
+
+/* ラベル */
+.slidebar-multithumb label {
+  grid-column: 1;
+  grid-row: 1;
+}
+
+/* inputのスタイル */
+.slidebar-multithumb input[type="range"] {
+  grid-column: 1;
+  grid-row: 2;
+  pointer-events: none;
+  -webkit-appearance: none;
+  background: none;
+  border: 1px solid;
+  overflow: hidden;
+}
+
+/* つまみ部分のスタイル */
+.slidebar-multithumb ::-webkit-slider-thumb {
+  pointer-events: auto;
+  -webkit-appearance: none;
+  width: 0.8rem;
+  height: 1.5rem;
+}
+
+/* それぞれのつまみのスタイル */
+.thumb-1 {
+  z-index: 1;
+}
+
+
+.thumb-1::-webkit-slider-runnable-track {
+  background: none;
+}
+
+.thumb-2::-webkit-slider-runnable-track {
+  background: red;
+}
+
+.thumb-1::-webkit-slider-thumb {
+  background: var(--bar1);
+  box-shadow: -100vw 0 0 100vw var(--bar1);
+}
+.thumb-2::-webkit-slider-thumb {
+  background: var(--bar2);
+  box-shadow: -100vw 0 0 100vw var(--bar2);
+}
