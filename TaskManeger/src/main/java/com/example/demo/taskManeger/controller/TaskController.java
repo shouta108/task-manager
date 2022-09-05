@@ -1,5 +1,7 @@
 package com.example.demo.taskManeger.controller;
 
+import java.util.Calendar;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -35,7 +37,7 @@ public class TaskController {
 	
 	@PostMapping("confirm")
 	public String confirm(TaskForm f ,@ModelAttribute TaskManeger task, Model model) {
-		TaskManeger revisedTask = new TaskManeger(f.getId(), f.getTask(), f.getDate(), f.getSort(), f.getCompletion());
+		TaskManeger revisedTask = new TaskManeger(f.getId(), f.getTask(), f.getDate(), f.getSort(), f.getCompletion(), f.getRegistrationDate());
 		task = repository.save(revisedTask);
 		model.addAttribute("taskList", service.sortDate());
 		return "view";
@@ -43,7 +45,8 @@ public class TaskController {
 	
 	@PostMapping("register")
 	public String register(TaskForm f,@ModelAttribute TaskManeger taskEntity, Model model) {
-		TaskManeger task = new TaskManeger(null, f.getTask(), f.getDate(), f.getSort(), false);
+		Calendar cal = Calendar.getInstance();
+		TaskManeger task = new TaskManeger(null, f.getTask(), f.getDate(), f.getSort(), false, new java.sql.Date(cal.getTimeInMillis()));
 		task = repository.save(task);
 		model.addAttribute("taskList", service.sortDate());
 		return "view";

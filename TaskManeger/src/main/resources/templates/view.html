@@ -19,12 +19,14 @@
 	</form>
         <table>
 	        <tr>
+	        	<th></th>
 	        	<th id="sortLabel">ソート</th>
 	            <th id="todoLabel">タスク</th>
 	            <th id="dateLabel">期日</th>
 	            <th>完了</th>
 	        </tr>
 	        <tr th:each="taskManeger : ${taskList}" th:object="${taskManeger}">
+	        	<td th:style="'background-color: red'"></td>
 	        	<td th:text="*{sort}"></td>
 	            <td th:text="*{task}"></td>
 	            <td th:text="*{date}"></td>

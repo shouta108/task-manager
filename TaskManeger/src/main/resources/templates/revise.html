@@ -14,6 +14,7 @@
 		            <th id="todoLabel">タスク</th>
 		            <th id="dateLabel">期日</th>
 		            <th id="completionLabel">完了</th>
+		            <th id="registrationDate">登録日</th>
 		        </tr>
 		       
 		        <tr th:object="${reviseTask}">
@@ -22,7 +23,7 @@
 		        	<td><input type="text" id="task" name="task" th:field="*{task}"></td>
 		        	<td><input type="date" id="date" name="date" th:field="*{date}"></td>
 		        	<td><input type="text" id="completion" name="completion" th:field="*{completion}" readonly></td>
-		        </tr>
+		        	<td><input type="date" id="registrationDate" name="registrationDate" th:field="*{registrationDate}" readonly></td>		        </tr>
 		</table>
 		<button id="submit">変更</button>
 	</form>

@@ -9,15 +9,15 @@
 <script type="text/javascript" th:src="@{/js/slidebar.js}"></script>
 </head>
 <body>
-	<div class="slidebar-multithumb">
+<div class="slidebar-multithumb">
   <label for="range-label">slidebar</label>
   <input class="thumb-1" type="range" name="range-1" id="range-1" value="50" min="0" max="100" step="1">
   <input class="thumb-2" type="range" name="range-2" id="range-2" value="90" min="0" max="100" step="1">
   <div>
-    <div>開始:<span id="start-value"></span></div> 
-    <div>終了:<span id="end-value"></span></div>
-    <div>差分:<span id="difference"></span></div>
+    <div><span id="start-value" value="50"></span></div> 
+    <div><span id="end-value" value="90"></span></div>
   </div>
+  <button type="submit">変更</button>
 </div>
 </body>
 </html>

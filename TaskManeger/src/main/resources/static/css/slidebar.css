@@ -51,7 +51,7 @@
 }
 
 .thumb-1::-webkit-slider-thumb {
-  background: var(--bar1);
+  background: var(--bar2);
   box-shadow: -100vw 0 0 100vw var(--bar1);
 }
 .thumb-2::-webkit-slider-thumb {

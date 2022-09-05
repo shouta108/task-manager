@@ -64,7 +64,6 @@ public class TaskServiceImpl implements TaskService {
 			sortTasks.add(task);
 		}
 		Collections.sort(sortTasks, new TaskComparator());
-		tasks = sortTasks;
-		return tasks;
+		return sortTasks;
 	}
 }

@@ -31,4 +31,7 @@ public class TaskManeger {
 	//完了
 	@Column(value ="completion")
 	private Boolean completion;
+	//登録日
+	@Column(value ="registrationDate")
+	private Date registrationDate;
 }

@@ -18,4 +18,6 @@ public class TaskForm {
 	private String sort;
 	//完了
 	private Boolean completion;
+	//登録日
+	private Date registrationDate;
 }
