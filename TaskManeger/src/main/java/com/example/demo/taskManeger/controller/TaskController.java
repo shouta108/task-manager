@@ -6,6 +6,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+
+import org.springframework.web.bind.annotation.PostMapping;
+
+import com.example.demo.taskManeger.form.TaskForm;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -14,6 +18,7 @@ import com.example.demo.taskManeger.entity.TaskManeger;
 import com.example.demo.taskManeger.form.TaskForm;
 import com.example.demo.taskManeger.repository.TaskRepository;
 import com.example.demo.taskManeger.service.TaskServiceImpl;
+
 
 @Controller
 public class TaskController {
@@ -29,6 +34,17 @@ public class TaskController {
 		return "view";
 	}
 	
+
+	@PostMapping("register")
+	public String register(TaskForm f) {
+		System.out.println(f.getTask());
+		System.out.println(f.getSort());
+		System.out.println(f.getDate());
+//		TaskManeger task = new TaskManeger(null, f.getTask(), f.getDate(), f.getSort(), false);
+//		task = repository.save(task);
+		return "view";
+	}
+
 	@PostMapping("revise")
 	public String showrevice(@ModelAttribute TaskManeger task, Model model, @RequestParam("id") String id) {
 		model.addAttribute("reviseTask", service.selectOneById(Integer.parseInt(id)));
@@ -81,4 +97,5 @@ public class TaskController {
 	public String config() {
 		return "config";
 	}
+
 }
