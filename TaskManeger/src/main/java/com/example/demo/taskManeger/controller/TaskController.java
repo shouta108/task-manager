@@ -6,10 +6,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
-
-import org.springframework.web.bind.annotation.PostMapping;
-
-import com.example.demo.taskManeger.form.TaskForm;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -37,11 +33,9 @@ public class TaskController {
 
 	@PostMapping("register")
 	public String register(TaskForm f) {
-		System.out.println(f.getTask());
-		System.out.println(f.getSort());
-		System.out.println(f.getDate());
-//		TaskManeger task = new TaskManeger(null, f.getTask(), f.getDate(), f.getSort(), false);
-//		task = repository.save(task);
+		Calendar cal = Calendar.getInstance();
+		TaskManeger task = new TaskManeger(null, f.getTask(), f.getDate(), f.getSort(), false, new java.sql.Date(cal.getTimeInMillis()));
+		task = repository.save(task);
 		return "view";
 	}
 
