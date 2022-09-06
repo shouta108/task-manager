@@ -1,5 +1,5 @@
 create database taskManeger character set utf8;
 
-create table task (id int primary key auto_increment, task varchar(100) not null, date date, sort varchar(100), completion boolean default false, registrationDate date not null);
+use taskManeger;
 
-insert into task(task, date, sort, registrationDate) values("テスト","2022-09-05","テスト用","2022-09-09");
+create table task (id int primary key auto_increment, task varchar(100) not null, date date, sort varchar(100), completion boolean default false, registrationDate date not null);

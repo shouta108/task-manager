@@ -30,12 +30,12 @@ public class TaskController {
 		return "view";
 	}
 	
-
 	@PostMapping("register")
-	public String register(TaskForm f) {
+	public String register(TaskForm f, @ModelAttribute TaskManeger task, Model model) {
 		Calendar cal = Calendar.getInstance();
-		TaskManeger task = new TaskManeger(null, f.getTask(), f.getDate(), f.getSort(), false, new java.sql.Date(cal.getTimeInMillis()));
-		task = repository.save(task);
+		TaskManeger registerTask = new TaskManeger(null, f.getTask(), f.getDate(), f.getSort(), false, new java.sql.Date(cal.getTimeInMillis()));
+		task = repository.save(registerTask);
+		model.addAttribute("taskList", service.sortDate());
 		return "view";
 	}
 
@@ -53,14 +53,6 @@ public class TaskController {
 		return "view";
 	}
 	
-	@PostMapping("register")
-	public String register(TaskForm f,@ModelAttribute TaskManeger taskEntity, Model model) {
-		Calendar cal = Calendar.getInstance();
-		TaskManeger task = new TaskManeger(null, f.getTask(), f.getDate(), f.getSort(), false, new java.sql.Date(cal.getTimeInMillis()));
-		task = repository.save(task);
-		model.addAttribute("taskList", service.sortDate());
-		return "view";
-	}
 	
 	@PostMapping("delete")
 	public String deleteTask(@RequestParam("id") String id, Model model) {
@@ -77,11 +69,11 @@ public class TaskController {
 			if (taskId == Integer.parseInt(id) && task.getCompletion() == false) {
 				task.setCompletion(true);
 				repository.save(task);
-				model.addAttribute("taskList", service.selectAll());
+				model.addAttribute("taskList", service.sortDate());
 			} else if (taskId == Integer.parseInt(id) && task.getCompletion() == true) {
 				task.setCompletion(false);
 				repository.save(task);
-				model.addAttribute("taskList", service.selectAll());
+				model.addAttribute("taskList", service.sortDate());
 			}
 		}
 		return "view";
