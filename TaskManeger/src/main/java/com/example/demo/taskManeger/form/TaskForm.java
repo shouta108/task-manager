@@ -4,9 +4,12 @@ import java.sql.Date;
 
 import javax.validation.constraints.NotBlank;
 
+import org.springframework.data.relational.core.mapping.Table;
+
 import lombok.Data;
 
 @Data
+@Table(name="task")
 public class TaskForm {
 	private Integer id;
 	//タスク名

@@ -15,7 +15,6 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @Table(name="task")
 public class TaskManeger {
-	// データベースに保存する項目名
 	@Id
 	@Column(value ="id")
 	private Integer id;

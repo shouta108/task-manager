@@ -19,5 +19,21 @@
   </div>
   <button type="submit">変更</button>
 </div>
+
+<div class="changeSort">
+	<label>Sort</label>
+	<select id="select">
+    	<option id="selected" th:each="sort : ${sort}" th:object="${sort}" th:text="*{sort}" th:value="*{id}"></option>
+    </select>
+    <input type="text" id="sort" name="sort">
+</div>
+<script>
+		$(function() {
+			$("#select").on("change" , function() {
+				var sort = "";
+				$("#sort").val(sort);
+			});
+		});
+</script>
 </body>
 </html>

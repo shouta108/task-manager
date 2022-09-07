@@ -19,11 +19,15 @@
 		       
 		        <tr th:object="${reviseTask}">
 		        	<td><input type="text" id="id" name="id" th:field="*{id}" readonly></td>
-		        	<td><input type="text" id="sort" name="sort" th:field="*{sort}"></td>
+		        	<td>
+		        		<select id="sort" name="sort">
+        				<option th:each="sort : ${sort}" th:object="${sort}" th:text="*{sort}" th:value="*{sort}"></option>
+        				</select>
+        			</td>
 		        	<td><input type="text" id="task" name="task" th:field="*{task}"></td>
 		        	<td><input type="date" id="date" name="date" th:field="*{date}"></td>
 		        	<td><input type="text" id="completion" name="completion" th:field="*{completion}" readonly></td>
-		        	<td><input type="date" id="registrationDate" name="registrationDate" th:field="*{registrationDate}" readonly></td>		        </tr>
+		        	<td><input type="date" id="registrationDate" name="registrationDate" th:field="*{registrationDate}" readonly></td></tr>
 		</table>
 		<button id="submit">変更</button>
 	</form>
