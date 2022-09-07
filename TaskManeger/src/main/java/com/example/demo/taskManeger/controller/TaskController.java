@@ -14,7 +14,10 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import com.example.demo.taskManeger.entity.ColorConfig;
+import com.example.demo.taskManeger.entity.Sort;
 import com.example.demo.taskManeger.entity.TaskManeger;
+import com.example.demo.taskManeger.form.ConfigForm;
+import com.example.demo.taskManeger.form.SortForm;
 import com.example.demo.taskManeger.form.TaskForm;
 import com.example.demo.taskManeger.repository.ColorRepository;
 import com.example.demo.taskManeger.repository.SortRepository;
@@ -71,7 +74,7 @@ public class TaskController {
 	@PostMapping("confirm")
 	public String confirm(TaskForm f ,@ModelAttribute TaskManeger task, Model model) {
 		TaskManeger revisedTask = new TaskManeger(f.getId(), f.getTask(), f.getDate(), f.getSort(), f.getCompletion(), f.getRegistrationDate());
-		task = taskRepository.save(revisedTask);
+		revisedTask = taskRepository.save(revisedTask);
 		model.addAttribute("colorList", setColor());
 		model.addAttribute("sort", sort.selectAll());
 		model.addAttribute("taskList", service.sortDate());
@@ -89,7 +92,7 @@ public class TaskController {
 	}
 	
 	@PostMapping("completion")
-	public String completion(TaskForm f, @RequestParam("id") String id, Model model) {
+	public String completion(@RequestParam("id") String id, Model model) {
 		Iterable<TaskManeger> tasks = service.sortDate();
 		for (TaskManeger task : tasks) {
 			int taskId = task.getId();
@@ -114,6 +117,15 @@ public class TaskController {
 	public String config(Model model) {
 		model.addAttribute("sort", sort.selectAll());
 		return "config";
+	}
+	
+	@PostMapping("sortRevise")
+	public String sortRevise(SortForm f, Model model) {
+		sort.changeSort(f.getId(), f.getSort());
+		model.addAttribute("colorList", setColor());
+		model.addAttribute("sort", sort.selectAll());
+		model.addAttribute("taskList", service.sortDate());
+		return "view";
 	}
 	
 	public List<String> setColor() {

@@ -6,7 +6,7 @@
 <link th:href="@{/css/style.css}" rel="styleSheet">
 <link th:href="@{/css/slidebar.css}" rel="styleSheet">
 <script type="text/javascript" th:src="@{/js/jquery-3.6.0.min.js}"></script>
-<script type="text/javascript" th:src="@{/js/config.js}"></script>
+<script type="text/javascript" th:src="@{/js/slidebar.js}"></script>
 </head>
 <body>
 <div class="slidebar-multithumb">
@@ -20,16 +20,20 @@
   <button type="submit">変更</button>
 </div>
 
-<form th:action="@{sortRevise}" method="post">
 <div class="changeSort">
 	<label>Sort</label>
-	<select name="select">
-    	<option th:id="*{id}" th:each="sort : ${sort}" th:object="${sort}" th:text="*{sort}" th:value="*{sort}"></option>
-    </select><br>
-    <div id="sortRevise">変更後 <input type="text" name="sort"></div><br>
-    <div id="sortRevise">id <input type="text" name="id" readonly></div><br>
-    <button type="submit">変更</button>
+	<select id="select">
+    	<option id="selected" th:each="sort : ${sort}" th:object="${sort}" th:text="*{sort}" th:value="*{id}"></option>
+    </select>
+    <input type="text" id="sort" name="sort">
 </div>
-</form>
+<script>
+		$(function() {
+			$("#select").on("change" , function() {
+				var sort = "";
+				$("#sort").val(sort);
+			});
+		});
+</script>
 </body>
 </html>

@@ -6,5 +6,5 @@ public interface SortServise {
 	//全件取得
 	Iterable<Sort> selectAll();
 	//変更
-	void changeSort(Sort sort);
+	void changeSort(Integer integer, String str);
 }

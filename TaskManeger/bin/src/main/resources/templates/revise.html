@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>TODOリスト</title>
+<link  th:href="@{/css/style.css}" rel="styleSheet">
+</head>
+<body>
+	<form th:action="@{confirm}" method="post">
+		<table>
+		        <tr>
+		        	<th id="id">Id</th>
+		        	<th id="sortLabel">ソート</th>
+		            <th id="todoLabel">タスク</th>
+		            <th id="dateLabel">期日</th>
+		            <th id="completionLabel">完了</th>
+		            <th id="registrationDate">登録日</th>
+		        </tr>
+		       
+		        <tr th:object="${reviseTask}">
+		        	<td><input type="text" id="id" name="id" th:field="*{id}" readonly></td>
+		        	<td>
+		        		<select id="sort" name="sort">
+        				<option th:each="sort : ${sort}" th:object="${sort}" th:text="*{sort}" th:value="*{sort}"></option>
+        				</select>
+        			</td>
+		        	<td><input type="text" id="task" name="task" th:field="*{task}"></td>
+		        	<td><input type="date" id="date" name="date" th:field="*{date}"></td>
+		        	<td><input type="text" id="completion" name="completion" th:field="*{completion}" readonly></td>
+		        	<td><input type="date" id="registrationDate" name="registrationDate" th:field="*{registrationDate}" readonly></td></tr>
+		</table>
+		<button id="submit">変更</button>
+	</form>
+</body>
+</html>
