@@ -2,7 +2,7 @@ create database taskManeger character set utf8;
 use taskManeger;
 create table task (id int primary key auto_increment, task varchar(100) not null, date date, sort varchar(100), completion boolean default false, registrationDate date not null);
 create table color (id int primary key, phase1 int not null, phase2 int not null, startColor varchar(7) not null, middleColor varchar(7) not null, endColor varchar(7) not null);
-insert into color values(1, 50, 90, "#00ff00", "#ffff00", "#ff0000");
+insert into color values(1 ,50, 90, "#00ff00", "#ffff00", "#ff0000");
 create table sort (id int primary key auto_increment, sort varchar(100) not null);
 insert into sort (sort) values("分類1");
 insert into sort (sort) values("分類2");

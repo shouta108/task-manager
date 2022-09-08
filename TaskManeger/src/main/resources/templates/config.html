@@ -11,6 +11,7 @@
 <body>
 <form th:action="@{configRevise}" method="post">
 <div class="colorConfig" th:object="${config}">
+<input type="text" id="id" name="id" th:value="${config.id}" hidden="hidden">
 	<div class="slidebar-multithumb">
 	  <label for="range-label">slidebar</label>
 	  <input class="thumb-1" type="range" name="range-1" id="range-1" th:value="${config.phase1}" min="0" max="100" step="1">

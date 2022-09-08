@@ -5,6 +5,7 @@ import java.util.Date;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -15,16 +16,17 @@ import com.example.demo.taskManeger.repository.ColorRepository;
 @Service
 @Transactional
 public class ColorServiceImpl implements ColorService {
-
+	@Autowired
+	private JdbcTemplate jdbcTemplate;
 	@Autowired
 	ColorRepository repository;
 	@Autowired
 	TaskServiceImpl service;
 
 	@Override
-	public void updatePhase(ColorConfig conf) {
+	public void updateConfig(ColorConfig conf) {
 		// TODO 自動生成されたメソッド・スタブ
-		repository.save(conf);
+		jdbcTemplate.update("update color set phase1=?, phase2=?, startColor=?, middleColor=?, endColor=? where id=1", conf.getPhase1(), conf.getPhase2(), conf.getStartColor(), conf.getMiddleColor(), conf.getEndColor());
 	}
 
 	@Override
