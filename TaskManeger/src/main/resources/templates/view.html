@@ -4,29 +4,32 @@
 <meta charset="UTF-8">
 <title>TODOリスト</title>
 <link  th:href="@{/css/style.css}" rel="styleSheet">
+<script type="text/javascript" th:src="@{/js/jquery-3.6.0.min.js}"></script>
+<script type="text/javascript" th:src="@{/js/alert.js}"></script>
 </head>
 <body>
 <main>
     <form th:action="@{register}" method="post">
         <div id="input">
-        <label>追加するタスク: <input id="todo" name="task"></label><br>
-        <label>ソート:<select id="sort" name="sort">
+        <label>課題: <input id="task" name="task"></label><br>
+        <label>内容:<select id="sort" name="sort">
         				<option th:each="sort : ${sort}" th:object="${sort}" th:text="*{sort}" th:value="*{sort}"></option>
         			</select>
         </label><br>
-        <label>期日: <input type="date" name="date"></label>  <button id="submit">登録</button> 
+        <label>期日: <input type="date" id="date" name="date"></label>  <button id="submit" name="register">登録</button> 
         </div>
 	</form>
 	<form th:action="@{config}" method="post">
-		<button id="config">config</button>
+		<button id="config">設定</button>
 	</form>
         <table>
 	        <tr>
-	        	<th></th>
-	        	<th id="sortLabel">ソート</th>
-	            <th id="todoLabel">タスク</th>
+	        	<th>残り期間</th>
+	        	<th id="sortLabel">内容</th>
+	            <th id="todoLabel">課題</th>
 	            <th id="dateLabel">期日</th>
 	            <th>完了</th>
+	            <th colspan="2">機能</th> 
 	        </tr>
 	        <tr th:each="taskManeger, stat : ${taskList}" th:object="${taskManeger}">
 	        	<td th:style="${colorList[{stat.index}]}"></td>

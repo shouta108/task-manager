@@ -13,7 +13,7 @@
 <div class="colorConfig" th:object="${config}">
 <input type="text" id="id" name="id" th:value="${config.id}" hidden="hidden">
 	<div class="slidebar-multithumb">
-	  <label for="range-label">slidebar</label>
+	  <label for="range-label">カラーバー　&emsp; 期日までどのくらいかを割合で表示します</label>
 	  <input class="thumb-1" type="range" name="range-1" id="range-1" th:value="${config.phase1}" min="0" max="100" step="1">
 	  <input class="thumb-2" type="range" name="range-2" id="range-2" th:value="${config.phase2}" min="0" max="100" step="1">
 	  <div class="phaseColor">
@@ -23,23 +23,25 @@
 		<button type="button" id="color1">リセット</button><button type="button" id="color2">リセット</button><button type="button" id="color3">リセット</button>
 	</div>
 	  <div>
-	    <div><input type="text" id="phase1" name="phase1" th:value="${config.phase1}" readonly></div> 
-	    <div><input type="text" id="phase2" name="phase2" th:value="${config.phase2}" readonly></div>
+	    <div>
+	    <input type="text" id="phase1" name="phase1" th:value="${config.phase1}" readonly>
+	    <input type="text" id="phase2" name="phase2" th:value="${config.phase2}" readonly>
+	    </div>
 	  </div>
-	  <button type="submit">変更</button>
+	  <button type="submit" id="revise">変更</button>
 	</div>
 </div>
 </form>
 
 <form th:action="@{sortRevise}" method="post">
 <div class="changeSort">
-	<label>Sort</label>
+	<label>内容</label>
 	<select name="select">
     	<option th:id="*{id}" th:each="sort : ${sort}" th:object="${sort}" th:text="*{sort}" th:value="*{sort}"></option>
     </select><br>
-    <div id="sortRevise">変更後 <input type="text" name="sort"></div><br>
-    <div id="sortRevise">id <input type="text" name="id" readonly></div><br>
-    <button type="submit">変更</button>
+    <div id="sortRevise">変更後 <input type="text" name="sort" id="sort"></div>
+    <div id="sortRevise">id <input type="text" name="id"></div><br>
+    <button type="submit" id="submit" name="change">変更</button>
 </div>
 </form>
 </body>

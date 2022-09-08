@@ -40,7 +40,6 @@ public class SortServiceImpl implements SortServise {
 		sortRepository.save(sort);
 		Iterable<TaskManeger> tasks = taskService.selectAll();
 		for (TaskManeger task : tasks) {
-			System.out.println(beforeSort.getSort() + task.getSort());
 			if (beforeSort.getSort().equals(task.getSort())) {
 				task.setSort(str);
 				taskService.updateTask(task);

@@ -6,10 +6,25 @@ $(function() {
 	$("#phase2").text(range2);
     $("#range-1").on("input change", function() {
         range1 = $('#range-1').val();
+        if (range1 <= 0) {
+			range1 = 1;
+		}
 		$("#phase1").text(range1);
 		$("#phase1").val(range1);
 		if (Number(range1) >= Number(range2)) {
+			range1 = Number(range2) - 1;
+			if (range1 <= 0) {
+				range1 = 1;
+			}
+	    	$("#phase1").text(range1);
+	    	$("#phase1").val(range1);
+	    	$("#range-1").val(range1);
+		}
+		if (Number(range1) >= Number(range2)) {
 			range2 = Number(range1) + 1;
+			if(range2 >= 100) {
+				range2 = 99;
+			}
 	    	$("#phase2").text(range2);
 	    	$("#phase2").val(range2);
 	    	$("#range-2").val(range2);
@@ -18,10 +33,25 @@ $(function() {
     
     $("#range-2").on("input change", function() {
 		range2 = $("#range-2").val();
+		if (range2 >= 100) {
+			range2 = 99;
+		}
     	$("#phase2").text(range2);
     	$("#phase2").val(range2);
-    	if (Number(range1) >= Number(range2)) {
+		if (Number(range1) >= Number(range2)) {
+			range2 = Number(range1) + 1;
+			if(range2 >= 100) {
+				range2 = 99;
+			}
+	    	$("#phase2").text(range2);
+	    	$("#phase2").val(range2);
+	    	$("#range-2").val(range2);
+		}
+		if (Number(range1) >= Number(range2)) {
 			range1 = Number(range2) - 1;
+			if (range1 <= 0) {
+				range1 = 1;
+			}
 	    	$("#phase1").text(range1);
 	    	$("#phase1").val(range1);
 	    	$("#range-1").val(range1);
@@ -74,7 +104,7 @@ $(function() {
 		
 	$('[name="select"]').on("click" , function() {
 		var sorts = [$("#1").val(), $("#2").val(), $("#3").val(), $("#4").val(), $("#5").val()];
-		var id = "";
+		var id = 1;
 		var sort = $('[name="select"]').val();
 		for (let i = 1 ; i < 6; i++) {
 			if (sort == sorts[i-1]) {
@@ -85,5 +115,14 @@ $(function() {
 		$('[name="id"]').val(id);
 		$('[name="id"]').attr("id", id);
 		console.log($('[name="id"]').attr("id"));
+	});
+});
+
+$(function() {
+	$('#submit').mouseover(function() {
+		var sort = $("#sort").val();
+		if (!sort) {
+			alert("分類が設定されていません");
+		}
 	});
 });
