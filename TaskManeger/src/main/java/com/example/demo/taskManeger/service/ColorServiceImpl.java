@@ -20,16 +20,12 @@ public class ColorServiceImpl implements ColorService {
 	ColorRepository repository;
 	@Autowired
 	TaskServiceImpl service;
-	
-	
 
 	@Override
 	public void updatePhase(ColorConfig conf) {
 		// TODO 自動生成されたメソッド・スタブ
 		repository.save(conf);
 	}
-
-
 
 	@Override
 	public ColorConfig get() {
@@ -41,8 +37,6 @@ public class ColorServiceImpl implements ColorService {
 		}
 		return conf;
 	}
-
-
 
 	@Override
 	public List<String> setColor() {

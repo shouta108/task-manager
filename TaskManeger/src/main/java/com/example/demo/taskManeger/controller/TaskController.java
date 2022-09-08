@@ -124,7 +124,7 @@ public class TaskController {
 	//設定の編集
 	@PostMapping("configRevise")
 	public String configRevise(ConfigForm f, Model model) {
-		ColorConfig colorConfig = new ColorConfig(f.getPhase1(), f.getPhase2(), f.getStartColor() , f.getMiddleColor(), f.getEndColor()); 
+		ColorConfig colorConfig = new ColorConfig(1, f.getPhase1(), f.getPhase2(), f.getStartColor() , f.getMiddleColor(), f.getEndColor()); 
 		config.updatePhase(colorConfig);
 		model.addAttribute("colorList", config.setColor());
 		model.addAttribute("sort", sort.selectAll());
@@ -141,6 +141,5 @@ public class TaskController {
 		model.addAttribute("taskList", service.sortDate());
 		return "view";
 	}
-	
 	
 }

@@ -12,6 +12,8 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @Table(name="color")
 public class ColorConfig {
+	@Column(value="id")
+	private Integer id;
 	@Column(value ="phase1")
 	private Integer phase1;
 	@Column(value ="phase2")
