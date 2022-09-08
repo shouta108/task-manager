@@ -1,8 +1,9 @@
 @charset "UTF-8";
 /* 色設定 */
 :root {
-  --bar1: #00ff00;
-  --bar2: #ffff00;
+  --bar1: ;
+  --bar2: ;
+  --bar3: ;
 }
 
 /* グリッド */
@@ -47,7 +48,7 @@
 }
 
 .thumb-2::-webkit-slider-runnable-track {
-  background: #ff0000;
+  background: var(--bar3);
 }
 
 .thumb-1::-webkit-slider-thumb {

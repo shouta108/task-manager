@@ -9,16 +9,26 @@
 <script type="text/javascript" th:src="@{/js/config.js}"></script>
 </head>
 <body>
-<div class="slidebar-multithumb">
-  <label for="range-label">slidebar</label>
-  <input class="thumb-1" type="range" name="range-1" id="range-1" value="50" min="0" max="100" step="1">
-  <input class="thumb-2" type="range" name="range-2" id="range-2" value="90" min="0" max="100" step="1">
-  <div>
-    <div><span id="start-value" value="50"></span></div> 
-    <div><span id="end-value" value="90"></span></div>
-  </div>
-  <button type="submit">変更</button>
+<form th:action="@{configRevise}" method="post">
+<div class="colorConfig" th:object="${config}">
+	<div class="slidebar-multithumb">
+	  <label for="range-label">slidebar</label>
+	  <input class="thumb-1" type="range" name="range-1" id="range-1" th:value="${config.phase1}" min="0" max="100" step="1">
+	  <input class="thumb-2" type="range" name="range-2" id="range-2" th:value="${config.phase2}" min="0" max="100" step="1">
+	  <div class="phaseColor">
+		<label>1<input type="color" id="startColor" name="startColor" th:value="${config.startColor}"></label>
+		<label>2<input type="color" id="middleColor" name="middleColor" th:value="${config.middleColor}"></label>
+		<label>3<input type="color" id="endColor" name="endColor" th:value="${config.endColor}"></label><br>
+		<button type="button" id="color1">リセット</button><button type="button" id="color2">リセット</button><button type="button" id="color3">リセット</button>
+	</div>
+	  <div>
+	    <div><input type="text" id="phase1"  name="phase1" th:value="${config.phase1}" readonly></div> 
+	    <div><input type="text" id="phase2" name="phase2" th:value="${config.phase2}" readonly></div>
+	  </div>
+	  <button type="submit">変更</button>
+	</div>
 </div>
+</form>
 
 <form th:action="@{sortRevise}" method="post">
 <div class="changeSort">
